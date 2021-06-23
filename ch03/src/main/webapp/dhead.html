@@ -12,39 +12,64 @@
         font-size: 0;
         text-indent: 110%;
         overflow: hidden;
-        width: 222px;
-        height: 52px;
-        background: url('./images/naver-splite.png') no-repeat 0 -158px;
-        background-size: 440px 408px;
+        width: 180px;
+        height: 94px;
+        background: url('/ch03/images/daum.png') no-repeat;
+        background-size: 180px 94px;
+        display: block;
     }
 
-    .header .search-box {width: 400px; height: 50px;}
-    .header .search-box input, 
-    .header .search-box a {display: block}
+    .search-box {margin-top: 22px; width: 400px; height: 50px;} 
+    .search-box input, .search-box a {display: block}
+    .search-box a, .search-box input, .search-box .btn-search {float: right}
 
-    .header .search-box a, 
-    .header .search-box input, 
-    .header .search-box .btn-search {float: right}
-
-    .header .search-box input {
+    .search-box .btn-search {
+        width: 45px; height: 45px;
+    }
+    .search-box .btn-search button {
+        font-size: 0; 
+        text-indent: 110%; 
+        border: none; 
+        display: inline-block;
+        width: 44px; 
+        height: 42px; 
+        background: url('/ch03/images/daum_search.png') no-repeat -40px -231px;
+        background-size: 250px 310px;
+    }
+    .search-box { margin-left: 20px; border: 1px solid #0089ff; width: 380px; height: 45px;}
+    .search-box input {
+        float: left;
         width: 200px; 
         padding:13px 5px; 
-        border:3px solid#19CE60; 
+        /* border:3px solid#19CE60;  */
+        border: none;
         font-size:16px; 
         font-weight: bold;
         outline: none;
+    }
+    .search-box .keyboard {
+        margin: 1px;
+        font-size: 0;
+        text-indent: 110%; 
+        /* margin: 15px 10px 0 0; */
+        border: none; 
+        display: inline-block;
+        width: 29px;
+        height: 42px;
+        background: url('/ch03/images/daum_keyboard.png') no-repeat 0 0;
+        background-size: 30px 160px;
+        /* vertical-align: top; */
     }
 </style>
 </head>
 <body>
     <div class="header">
-        <h1 class="logo">네이버</h1>
+        <h1 class="logo">Daum</h1>
         <div class="search-box">
             <div class="btn-search">
                 <button>돋보기</button>
             </div>
-            <a href="#">드롭다운</a>
-            <a href="#">키보드</a>
+            <a href="#" class="keyboard">키보드</a>
             <input type="text">
         </div>
     </div>
