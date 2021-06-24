@@ -42,16 +42,40 @@ body					{ font-family: '맑은 고딕' 돋움; font-size:0.75em; color:#333 }
 }
 
 </style>
-<script src="" type="text/javascript"></script>
+<script>
+// DOM Level 1 Event 처리 : element의 event attribute 사용
+// 2) js code(DOM API)로만 작성하기
+var liSelected = null;
+var onTabClicked = function(){
+    this.className = "selected";
+    if(liSelected != null){
+        liSelected.className = "";
+    }
+    liSelected = this;
+
+};
+
+window.onload = function(){
+    var divTabBox = document.getElementsByClassName("tab-box")[0];
+    console.log(divTabBox.childNodes);
+
+    var ul = divTabBox.childNodes[1];
+    var liTabs = ul.getElementsByTagName('li');
+    
+    for(var i = 0; i < liTabs.length; i++){
+        liTabs[i].onclick = onTabClicked;
+    }
+}
+</script>
 </head>
 <body>
 <div class="tab-box">
 	<ul>
-        <li>메뉴 5</li>
-        <li class="selected">메뉴 4</li>
-        <li>메뉴 3</li>
-        <li>메뉴 2</li>
-        <li>메뉴 1</li>
+        <li>메뉴5</li>
+        <li>메뉴4</li>
+        <li>메뉴3</li>
+        <li>메뉴2</li>
+        <li>메뉴1</li>
     </ul>
     <div>
     	탭뷰입니다.
