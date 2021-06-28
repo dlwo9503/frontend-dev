@@ -23,6 +23,17 @@
 */
 
 /*
+자바 스크립트의 객체를 구분하는 또 다른 방법
+1. 내장(Built-In, Native) 객체
+   자바스크립트 엔진 안에 미리 내장되어 있는 객체
+   Number, Boolean, Date, RegExp ... 생성자 함수 객체
+   parseInt, setTimeout, setInterval 와 같은 일반 함수 객체
+   window 객체(브라우저에서만... 전역객체) 
+2. 호스트 객체
+   자바스크립트 엔진이 임베디드된 호스트의 객체(자바스크립트 접근 가능)
+   브라우저만 해당(document, location, XmlHttpRequest, ....)
+3. 사용자 객체
+   자바스크립트 코드가 엔진에서 실행되면서 생성되는 객체들....
 */
 
 console.log("==== 원시 타입 =====================")
