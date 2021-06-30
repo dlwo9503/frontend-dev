@@ -13,7 +13,6 @@ var tabBox = {
 	}
 }
 
-
 var onTabClicked = function() {
 	// unselected
 	var lisSelected = document.getElementsByClassName("selected");
