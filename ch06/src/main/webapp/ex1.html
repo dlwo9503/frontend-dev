@@ -13,8 +13,10 @@ console.log(s);
 setTimeout(function(){
 	var popup = window.open("popup.html", "popup", "width=600, higth=400");
 	setTimeout(function(){
+		// popup 문서의 내용 바꾸
 		popup.document.write("<h1>popup text changed</h1>")
 	}, 2000);
+	
 }, 2000);
 
 </script>
