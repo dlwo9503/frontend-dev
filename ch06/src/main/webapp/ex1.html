@@ -3,6 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+let s = "";
+for(props in window){
+	s += (props + ":" + window[props] + "\n");
+}
+console.log(s);
+
+// 팝업창
+setTimeout(function(){
+	var popup = window.open("popup.html", "popup", "width=600, higth=400");
+	setTimeout(function(){
+		popup.document.write("<h1>popup text changed</h1>")
+	}, 2000);
+}, 2000);
+
 </script>
 </head>
 <body>
@@ -13,4 +27,4 @@
 		<li>자바스크립트 실행과 관련된 환경 정보에 접근가능한 객체다.(Environment, Variable Object)</li>
 	</ul>
 </body>
-</html> 
+</html>
