@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+    window.addEventListener("load", function(){
+        const h1Element = document.createElement("h1"); // 돔에 h1태그 노드 하나 만들고
+        const textNode = document.createTextNode("Hello DOM"); // 텍스트 노트 만들고
+        h1Element.append(textNode); // 두개 붙임
+
+        setTimeout(() => {
+            document.body.appendChild(h1Element); // 만들어진 자식노드를 body에다가 붙임
+        }, 3000);
+    });
+</script>
+</head>
+<body>
+    <h1>HTMLElenent(DOM Tree Node) 추가하기1</h1>
+</body>
+</html>
