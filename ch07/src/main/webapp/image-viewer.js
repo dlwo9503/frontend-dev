@@ -3,19 +3,46 @@ var imageViewer = {
         var that = this;
         $(function () {
             $("#btn-change").click(that._changeImage.bind(that));
+            $("#btn-slideshow").click(that._slideshowImage.bind(that));
+            $(".image-viewer img").dblclick(that._consoleLog);
+            // 첫 화면 이미지 선택
             that._changeImage();
         });
     },
-    _intervalId: null,
+    _consoleLog: function(){
+        var name = $(this).attr("alt");
+        console.log(name);
+    },
     _changeImage: function () {
-        var result = Math.floor(Math.random() * this._images.length);
-        var info = this._images[result];
+        var index = Math.floor(Math.random() * this._images.length);
+        var info = this._images[index];
         $("img").attr({
             src: "images/" + info.file,
             alt: info.name,
             title: info.name
         })
     },
+    _slideshowImage: function(){
+        if(this._intervalId){
+            // 슬라이드 쇼가 진행 상태
+            // 1. 타이머 중지
+            clearInterval(this._intervalId);
+			this._intervalId = null;
+            // 2. 버튼텍스트 => 슬라이드쇼 시작
+            $("#btn-slideshow").text("슬라이드쇼 시작");
+        } else {
+            // 슬라이드 쇼가 중지 상태
+            // 1. 타이머 시작
+            var that = this;
+            // that._intervalId = setInterval(function(){
+            //     that._changeImage();
+            // }, 1000);
+            that._intervalId = setInterval(that._changeImage.bind(that), 1000);
+            // 2. 버튼텍스트 => 슬라이드쇼 중지
+            $("#btn-slideshow").text("슬라이드쇼 중지");
+        }
+    },
+    _intervalId: null,
     _images: [{
         name: "국화",
         file: "Chrysanthemum.jpg"
