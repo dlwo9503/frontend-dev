@@ -27,4 +27,9 @@ public class TestController {
 		return "json01";
 	}
 	
+	@RequestMapping("/json02")
+	public String json02() {
+		return "json02";
+	}
+	
 }
