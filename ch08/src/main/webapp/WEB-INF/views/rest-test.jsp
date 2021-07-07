@@ -19,12 +19,12 @@ $(function(){
 			gender: "male"
 		};
 		$.ajax({
-			url: "${pageContext.request.contextPath }/api/user",
-			dataType: "json",
-			type: "post",
+			url: "${pageContext.request.contextPath }/api/user", // 데이터 받아올 페이지
+			dataType: "json", // 받아올 데이터 형식
+			type: "post", // 전송 방식
 			contentType: "application/json",   
-			data: JSON.stringify(vo),
-			success: function(response){
+			data: JSON.stringify(vo), // 요청시에 함께 보낼 파라미터
+			success: function(response){ // 성공시 수행
 				console.log(response);
 			}
 		});
@@ -50,7 +50,7 @@ $(function(){
 				url: "${pageContext.request.contextPath }/api/user/10",
 				dataType: "json",
 				type: "put",
-				contentType: "application/json",   
+				contentType: "application/json",
 				data: JSON.stringify(vo),
 				success: function(response){
 					console.log(response);
