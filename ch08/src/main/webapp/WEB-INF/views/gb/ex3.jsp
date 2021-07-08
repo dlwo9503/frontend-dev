@@ -26,7 +26,7 @@ var fetch = function(){
 						"<strong></strong>" + 
 						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
 					"</li>";
-				$("#list-guestbook").append(html);	
+				$("#list-guestbook").append(html);
 			});
 		}
 	});	
@@ -35,28 +35,58 @@ $(function(){
 	$("#btn-fetch").click(function(){
 		fetch();
 	})
-	
 	// live event: 존재하지 않는 element의 이벤트 핸들러를 미리 등록
 	// delegation(위임) -> document
 	$(document).on("click", "#list-guestbook li a", function(event){
-		event.preventDefault(); // 있어야 안넘어감
+		event.preventDefault();
 		let no = $(this).data("no");
-		console.log(no);
+		$("#hidden-no").val(no);
+		
 		deleteDialog.dialog("open");
-	})
-
+	});
+	
 	// 삭제 다이알로그 만들기
 	const deleteDialog = $("#dialog-delete-form").dialog({
-		autoOpen: false, // 바로 못뜨게 옵션 줄 수 있음
+		autoOpen: false,
 		width: 300,
 		height: 220,
-		modal: true
+		modal: true,
+		buttons: {
+			"삭제": function(){
+				const no = $("#hidden-no").val();
+				const password = $("#password-delete").val();
+				$.ajax({
+					url: "${pageContext.request.contextPath }/guestbook/api/delete/"+no,
+					dataType: "json",
+					type: "post",
+					data: "password=" + password,
+					success: function(response){
+						if(response.data == -1){
+							// 비밀번호가 틀린경우.
+							$(".validateTips.error").show();
+							return;
+						}						
+						
+						$("#list-guestbook li[data-no=" + response.data + "]").remove();
+						deleteDialog.dialog('close');
+					}
+				});					
+			},
+			"취소": function(){
+				$(this).dialog("close");
+			}
+		},
+		close: function(){
+			//1. password 비우기
+			//2. no 비우기
+			//3. error message 숨기기.
+			console.log("다이알로그 폼 데이터 정리 작업");
+			
+		}
 	});
-
+	
 	// 최초 데이터 가져오기
 	fetch();
-	
-	// console.log($("#list-guestbook li a").length);
 });
 </script>
 </head>
@@ -72,7 +102,7 @@ $(function(){
 			<input type="password" id="password-delete" value="" class="text ui-widget-content ui-corner-all">
 			<input type="hidden" id="hidden-no" value="">
 			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-		</form>
-  </div>
+  		</form>
+	</div>	
 </body>
 </html>

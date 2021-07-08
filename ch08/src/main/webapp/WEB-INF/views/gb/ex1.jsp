@@ -10,8 +10,22 @@
 <title>Insert title here</title>
 <script src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js" type="text/javascript"></script>
 <script>
-var render = function(vo){
-	
+var render = function(vo, mode){
+	html =
+		"<li data-no='" + vo.no + "'>" + 
+			"<strong>" + vo.name + "</strong>" +
+			"<p>" + vo.message + "</p>" +
+			"<strong></strong>" + 
+			"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+		"</li>";
+	/*	
+	if(mode) {	
+		$("#list-guestbook").append(html);
+	} else {
+		$("#list-guestbook").prepend(html);
+	}
+	*/
+	$("#list-guestbook")[mode ? "append" : "prepend"](html);
 }
 var fetch = function(){
 	$.ajax({
@@ -19,15 +33,8 @@ var fetch = function(){
 		dataType: "json",
 		type: "get",
 		success: function(response){
-			response.data.forEach(function(vo){
-				html =
-					"<li data-no='" + vo.no + "'>" + 
-						"<strong>" + vo.name + "</strong>" +
-						"<p>" + vo.message + "</p>" +
-						"<strong></strong>" + 
-						"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
-					"</li>";
-				$("#list-guestbook").append(html);	
+			response.data.forEach(function(e){
+				render(e, true);
 			});
 		}
 	});	
