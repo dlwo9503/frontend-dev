@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js" type="text/javascript"></script>
+<script src="/ch08/ejs/ejs.js" type="text/javascript"></script>
+<script src="/ch08/jquery/jquery-3.6.0.js" type="text/javascript"></script>
 <script>
 var render = function(vo, mode){
 	html =
@@ -27,18 +28,26 @@ var render = function(vo, mode){
 	*/
 	$("#list-guestbook")[mode ? "append" : "prepend"](html);
 }
+var listEJS = new EJS({
+	url: "/ch08/ejs/list-template.ejs"
+});
+
+
 var fetch = function(){
 	$.ajax({
-		url: "${pageContext.request.contextPath }/guestbook/api/list",
+		url: "/ch08/guestbook/api/list",
 		dataType: "json",
 		type: "get",
 		success: function(response){
-			response.data.forEach(function(e){
-				render(e, true);
-			});
+			// response.data.forEach(function(e){
+			//	render(e, true);
+			// });
+			var html = listEJS.render(response);
+			$("#list-guestbook").append(html);
 		}
 	});	
 }
+
 $(function(){
 	$("#btn-fetch").click(function(){
 		fetch();
